@@ -1,0 +1,24 @@
+.topbarMobileContainer {
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-light);
+  .iconAvatar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      margin-inline-start: var(--metric-box-spacing);
+    }
+    .avatar {
+      margin-inline-end: var(--metric-box-spacing);
+    }
+  }
+  .dateMonth {
+    display: flex;
+    justify-content: flex-start;
+    margin-inline-start: var(--metric-box-spacing);
+  }
+}

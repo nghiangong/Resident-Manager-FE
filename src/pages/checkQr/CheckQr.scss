@@ -1,0 +1,34 @@
+.allowButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h4 {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+}
+.checkedQrInformation {
+  margin-block-start: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  .eachInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5em;
+    h4 {
+      margin-block-start: 0em;
+      margin-block-end: 0em;
+    }
+  }
+}
+.checkQrTitle{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  h4 {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+}

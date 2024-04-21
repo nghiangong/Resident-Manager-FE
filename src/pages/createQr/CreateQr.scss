@@ -1,0 +1,19 @@
+.createQrContainer1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  .contentContainer1 {
+    margin-block-start: 6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    h1 {
+      margin-block-end: 0em;
+    }
+    span {
+      font-size: 1.5em;
+    }
+  }
+}

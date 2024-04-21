@@ -1,0 +1,28 @@
+.sidebarTotalContainer {
+  background-color: var(--color-off-white);
+  grid-row: 2;
+  grid-column: 1;
+  height: 92vh;
+  position: fixed;
+  bottom: 0;
+  width: 15%;
+  .sidebarContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .subSide {
+      min-height: 8vh;
+      text-decoration: none;
+      display: flex;
+      flex: 1;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 20px;
+      color: var(--color-dark);
+      margin-inline-start: var(--metric-box-spacing);
+    }
+    .active {
+      color: var(--color-blue);
+    }
+  }
+}

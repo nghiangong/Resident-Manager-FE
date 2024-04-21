@@ -1,0 +1,22 @@
+.navMobileContainer {
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-block-start: calc(100vh - 41.06px);
+  background-color: var(--color-light);
+  .subNav {
+    text-decoration: none;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-dark);
+  }
+  .active {
+    color: var(--color-blue);
+  }
+}

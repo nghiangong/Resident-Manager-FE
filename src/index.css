@@ -1,13 +1,80 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --metric-box-spacing: 0.5rem;
+  --color-off-white: #faf9f6;
+  --color-light: #fdfdfd;
+  --color-dark: #222831;
+  --color-blue: #1677ff;
+  --color-purple: #7305bc;
+  --color-red:rgb(188, 5, 29);
+  --color-mid-dark: #31363f;
+  --metric-radius: 0.5rem;
+  --color-light-blue: #65a0f2;
+  --color-light-red: #f86e6e;
+  --color-max-light-blue: #b5d3fd;
+  --color-max-light-purple: #dcaaf3;
+  --color-max-light-red: #f9b2bc;
+  --color-cyan: #64fdf3;
+  --generic-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("../src/fonts/roboto-regular.woff2") format("woff2");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  font-size: clamp(1rem, 0.75rem + 1.5vw, 2rem);
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.webInterfaceContainer {
+  display: grid;
+  grid-template: 8vh 1fr / 15% 1fr;
+}
+
+.logoWeb {
+  z-index: 1;
+  position: fixed;
+  grid-row: 1;
+  grid-column: 1;
+  margin-inline-start: var(--metric-box-spacing);
+}
+.contentWebContainer {
+  width: 100%;
+  grid-row: 2;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1.2em;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+}
+
+.contentWeb {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  /* margin-block-start: 1em; */
+  border-radius: var(--metric-radius);
+  box-shadow: var(--generic-shadow);
+  padding: 1rem;
+  height: fit-content;
 }

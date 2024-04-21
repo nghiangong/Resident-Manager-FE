@@ -1,0 +1,14 @@
+.topbarContainer {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  background-color: var(--color-off-white);
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 8vh;
+  z-index: 1;
+  width: 85%;
+}

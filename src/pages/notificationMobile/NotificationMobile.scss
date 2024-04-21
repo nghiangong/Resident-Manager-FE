@@ -1,0 +1,33 @@
+.notificationMobileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: auto;
+  .contentContainer {
+    margin-block-start: 5em;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    h4 {
+      height: 2em;
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      margin-inline-start: var(--metric-box-spacing);
+      z-index: 1;
+      position: fixed;
+      background-color: var(--color-light);
+    }
+    .totalNotification {
+      z-index: 0;
+      margin-block-start: 3.5em;
+      margin-block-end: 3em;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+    }
+  }
+}

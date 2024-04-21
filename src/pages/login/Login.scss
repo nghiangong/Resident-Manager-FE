@@ -1,0 +1,182 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  .loginHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: var(--generic-shadow);
+    img {
+      margin-inline-start: var(--metric-box-spacing);
+    }
+  }
+  .loginInterface {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img {
+      margin-inline-start: 1.5em;
+      margin-inline-end: 1.5em;
+      flex: 5;
+    }
+    .loginFormContainer {
+      flex: 5;
+      .loginForm {
+        border-radius: var(--metric-radius);
+        margin-block-start: 1.5em;
+        margin-inline-start: 1.5em;
+        margin-inline-end: 5em;
+        box-shadow: var(--generic-shadow);
+        display: flex;
+        flex-direction: column;
+        .loginIcon {
+          margin-block-start: 1em;
+          margin-block-end: 0em;
+          margin-inline-start: var(--metric-box-spacing);
+          flex: 1;
+          gap: var(--metric-box-spacing);
+          display: flex;
+          flex-direction: row;
+          justify-content: start;
+          align-items: center;
+          h4 {
+            margin-block-start: 0em;
+            margin-block-end: 0em;
+          }
+        }
+        .loginRadio {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          margin-inline-start: var(--metric-box-spacing);
+          h6 {
+            margin-block-start: 1.5em;
+            margin-block-end: 0em;
+          }
+          flex: 4;
+        }
+        .loginInput {
+          margin-inline-start: 5em;
+          margin-inline-end: 5em;
+          margin-block-start: 2.5em;
+          flex: 5;
+          .loginButtonContainer {
+            margin-block-start: 3em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            .loginButton {
+              justify-self: center;
+            }
+          }
+        }
+        .register {
+          margin-block-start: 4em;
+          margin-block-end: 1em;
+          flex: 1;
+          font-size: 0.5em;
+          .subRegister {
+            text-decoration: none;
+            color: var(--color-blue);
+          }
+          /* Chuyển màu chữ sang xanh */
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 28rem) {
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    .loginHeader {
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      box-shadow: var(--generic-shadow);
+      img {
+        margin-inline-start: var(--metric-box-spacing);
+      }
+    }
+    .loginInterface {
+      max-width: 100%;
+      img {
+        display: none;
+      }
+      .loginFormContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        .loginForm {
+          border-radius: var(--metric-radius);
+          // margin-block-start: 3em;
+          margin-inline-start: 3em;
+          margin-inline-end: 3em;
+          box-shadow: var(--generic-shadow);
+          display: flex;
+          flex-direction: column;
+          .loginIcon {
+            margin-block-start: 1em;
+            margin-block-end: 0em;
+            margin-inline-start: var(--metric-box-spacing);
+            flex: 1;
+            gap: var(--metric-box-spacing);
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            h4 {
+              margin-block-start: 0em;
+              margin-block-end: 0em;
+            }
+          }
+          .loginRadio {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            margin-inline-start: var(--metric-box-spacing);
+            h6 {
+              margin-block-start: 1.5em;
+              margin-block-end: 0em;
+            }
+            flex: 4;
+          }
+          .loginInput {
+            margin-inline-start: 3em;
+            margin-inline-end: 3em;
+            margin-block-start: 2.5em;
+            flex: 5;
+            .loginButtonContainer {
+              margin-block-start: 3em;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              width: 100%;
+              .loginButton {
+                justify-self: center;
+              }
+            }
+          }
+          .register {
+            margin-block-start: 4em;
+            margin-block-end: 1em;
+            flex: 1;
+            font-size: 0.7em;
+            .subRegister {
+              text-decoration: none;
+              color: var(--color-blue);
+            }
+            /* Chuyển màu chữ sang xanh */
+          }
+        }
+      }
+    }
+  }
+}

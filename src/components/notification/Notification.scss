@@ -1,0 +1,14 @@
+.notificationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: var(--metric-radius);
+  width: 90%;
+  padding: var(--metric-box-spacing);
+  .information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+}

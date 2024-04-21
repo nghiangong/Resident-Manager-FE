@@ -1,0 +1,58 @@
+import { createContext, useEffect, useState } from "react";
+import { NavMobile } from "../../components/navMobile/NavMobile";
+import { Notification } from "../../components/notification/Notification";
+import { TopbarMobile } from "../../components/topbarMobile/TopbarMobile";
+import "./NotificationMobile.scss";
+import { userRequest } from "../../utils/requestMethod";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { message } from "antd";
+import { getCurrentDate1 } from "../../utils/Format";
+export const UpdateNotificationContext = createContext();
+export const NotificationMobile = () => {
+  const [update, setUpdate] = useState(false);
+  const [historiesPerDay, setHistoriesPerDay] = useState(null);
+  const [histories, setHistories] = useState([]);
+  const auth = useAuthUser();
+  const getHistories = async () => {
+    try {
+      const res = await userRequest.get(`/histories?userId=${auth.id}`);
+      setHistories(res.data);
+    } catch (error) {
+      console.log(error);
+      message.error("Không lấy được thông báo");
+    }
+  };
+  const getHistoriesPerDay = async () => {
+    try {
+      const res = await userRequest.get(
+        `/historiesPerDay?date=${getCurrentDate1()}&userId=${auth.id}`
+      );
+      setHistoriesPerDay(res.data);
+    } catch (error) {
+      console.log(error);
+      message.error("Không lấy được số lượt ra vào");
+    }
+  };
+  useEffect(() => {
+    getHistories();
+  }, [update]);
+  useEffect(() => {
+    getHistoriesPerDay();
+  }, []);
+  return (
+    <div className="notificationMobileContainer">
+      <TopbarMobile />
+      <div className="contentContainer">
+        <h4>Tổng lượt vào ra trong ngày: {historiesPerDay}</h4>
+        <div className="totalNotification">
+          {histories.map((history) => (
+            <UpdateNotificationContext.Provider value={{ update, setUpdate }}>
+              <Notification key={history.id} history={history} />
+            </UpdateNotificationContext.Provider>
+          ))}
+        </div>
+      </div>
+      <NavMobile update={update} />
+    </div>
+  );
+};

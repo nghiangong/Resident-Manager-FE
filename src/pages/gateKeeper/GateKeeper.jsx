@@ -14,7 +14,16 @@ export const GateKeeper = () => {
   const [update, setUpdate] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [totalCount1, setTotalCount1] = useState(0);
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const [keyword, setKeyword] = useState("");
+  const [keyword1, setKeyword1] = useState("");
+  const onSearch = (value, _e, info) => {
+    console.log(info?.source, value);
+    setKeyword(value); // Cập nhật keyword khi click tìm kiếm
+  };
+  const onSearch1 = (value, _e, info) => {
+    console.log(info?.source, value);
+    setKeyword1(value); // Cập nhật keyword khi click tìm kiếm
+  };
   return (
     <div className="webInterfaceContainer">
       <img className="logoWeb" src={logo} alt="logo" width={150} height={150} />
@@ -45,6 +54,7 @@ export const GateKeeper = () => {
             <GateKeeperTable
               totalCount={totalCount}
               setTotalCount={setTotalCount}
+              keyword={keyword}
             />
           </div>
         </UpdateGateContext.Provider>
@@ -55,7 +65,7 @@ export const GateKeeper = () => {
               <div className="searchContainer">
                 <Search
                   placeholder="Search"
-                  onSearch={onSearch}
+                  onSearch={onSearch1}
                   style={{
                     width: 200,
                   }}
@@ -72,6 +82,7 @@ export const GateKeeper = () => {
             <GateTable
               totalCount={totalCount1}
               setTotalCount={setTotalCount1}
+              keyword={keyword1}
             />
           </div>
         </UpdateGateContext.Provider>

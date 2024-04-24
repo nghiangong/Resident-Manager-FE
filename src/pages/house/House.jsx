@@ -1,6 +1,6 @@
 import { Input } from "antd";
 import { createContext, useState } from "react";
-import "./House.scss"
+import "./House.scss";
 import logo from "../../image/logo-Vinhomes.png";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { Topbar } from "../../components/topbar/Topbar";
@@ -12,7 +12,11 @@ export const House = () => {
   const { Search } = Input;
   const [update, setUpdate] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const [keyword, setKeyword] = useState("");
+  const onSearch = (value, _e, info) => {
+    console.log(info?.source, value);
+    setKeyword(value); // Cập nhật keyword khi click tìm kiếm
+  };
   return (
     <div className="webInterfaceContainer">
       <img className="logoWeb" src={logo} alt="logo" width={150} height={150} />
@@ -40,7 +44,11 @@ export const House = () => {
                 </span>
               </div>
             </div>
-            <HouseTable totalCount={totalCount} setTotalCount={setTotalCount} />
+            <HouseTable
+              totalCount={totalCount}
+              setTotalCount={setTotalCount}
+              keyword={keyword}
+            />
           </div>
         </UpdateHouseContext.Provider>
       </div>

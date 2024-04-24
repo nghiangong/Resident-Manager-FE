@@ -6,7 +6,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { getCurrentDate1 } from "../../utils/Format";
 import { UpdateGateContext } from "../../pages/gateKeeper/GateKeeper";
 
-export const GateKeeperTable = ({ totalCount, setTotalCount }) => {
+export const GateKeeperTable = ({ totalCount, setTotalCount, keyword }) => {
   const { update, setUpdate } = useContext(UpdateGateContext);
   const [gateKeepers, setGateKeepers] = useState([]);
   const [page, setPage] = useState(1);
@@ -33,9 +33,12 @@ export const GateKeeperTable = ({ totalCount, setTotalCount }) => {
   const getGateKeepers = async (currentPage) => {
     try {
       setIsLoading(true);
-      const res = await userRequest.get(
-        `/gateKeepers?pageNumber=${currentPage}&pageSize=${pageSize}`
-      );
+      let url = `/gateKeepers?pageNumber=${currentPage}&pageSize=${pageSize}`;
+      // Thêm keyword vào url nếu tồn tại
+      if (keyword) {
+        url += `&keyword=${keyword}`;
+      }
+      const res = await userRequest.get(url);
       setGateKeepers(res.data.content);
       setTotalCount(res.data.totalElements);
       setPage(currentPage);
@@ -46,7 +49,7 @@ export const GateKeeperTable = ({ totalCount, setTotalCount }) => {
   };
   useEffect(() => {
     getGateKeepers(1);
-  }, []);
+  }, [keyword]);
   useEffect(() => {
     getGateKeepers(page);
   }, [update]);

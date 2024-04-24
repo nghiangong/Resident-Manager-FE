@@ -6,7 +6,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { UpdateHouseContext } from "../../pages/house/House";
 import { getCurrentDate1 } from "../../utils/Format";
 
-export const HouseTable = ({ totalCount, setTotalCount }) => {
+export const HouseTable = ({ totalCount, setTotalCount, keyword }) => {
   const [houses, setHouses] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -32,9 +32,12 @@ export const HouseTable = ({ totalCount, setTotalCount }) => {
   const getHouses = async (currentPage) => {
     try {
       setIsLoading(true);
-      const res = await userRequest.get(
-        `/houses/page?pageNumber=${currentPage}&pageSize=${pageSize}`
-      );
+      let url = `/houses/page?pageNumber=${currentPage}&pageSize=${pageSize}`;
+      // Thêm keyword vào url nếu tồn tại
+      if (keyword) {
+        url += `&keyword=${keyword}`;
+      }
+      const res = await userRequest.get(url);
       setHouses(res.data.content);
       setTotalCount(res.data.totalElements);
       setPage(currentPage);
@@ -45,7 +48,7 @@ export const HouseTable = ({ totalCount, setTotalCount }) => {
   };
   useEffect(() => {
     getHouses(1);
-  }, []);
+  }, [keyword]);
   useEffect(() => {
     getHouses(page);
   }, [update]);

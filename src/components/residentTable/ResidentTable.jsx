@@ -11,6 +11,7 @@ export const ResidentTable = ({
   acceptedStatus,
   totalCount,
   setTotalCount,
+  keyword,
 }) => {
   const { update, setUpdate } = useContext(UpdateResidentContext);
   const [residents, setResidents] = useState([]);
@@ -39,9 +40,12 @@ export const ResidentTable = ({
   const getResidents = async (currentPage) => {
     try {
       setIsLoading(true);
-      const res = await userRequest.get(
-        `/users/page?pageNumber=${currentPage}&pageSize=${pageSize}&acceptedStatus=${acceptedStatus}`
-      );
+      let url = `/users/page?pageNumber=${currentPage}&pageSize=${pageSize}&acceptedStatus=${acceptedStatus}`;
+      // Thêm keyword vào url nếu tồn tại
+      if (keyword) {
+        url += `&keyword=${keyword}`;
+      }
+      const res = await userRequest.get(url);
       setResidents(res.data.content);
       setTotalCount(res.data.totalElements);
       setPage(currentPage);
@@ -53,7 +57,7 @@ export const ResidentTable = ({
 
   useEffect(() => {
     getResidents(1);
-  }, []);
+  }, [keyword]);
   useEffect(() => {
     // Khi updateFlag thay đổi, cập nhật lại dữ liệu cư dân từ server
     getResidents(page);

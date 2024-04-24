@@ -5,7 +5,13 @@ import { userRequest } from "../../utils/requestMethod";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { formatDateTimeDetail } from "../../utils/Format";
 
-export const HistoryTable = ({ totalCount, setTotalCount }) => {
+export const HistoryTable = ({
+  totalCount,
+  setTotalCount,
+  keyword,
+  startDate,
+  endDate,
+}) => {
   const [histories, setHistories] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -16,7 +22,12 @@ export const HistoryTable = ({ totalCount, setTotalCount }) => {
     try {
       setIsLoading(true);
       let url = `/histories/page?pageNumber=${currentPage}&pageSize=${pageSize}`;
-
+      if (keyword) {
+        url += `&keyword=${keyword}`;
+      }
+      if (startDate && endDate) {
+        url += `&startDate=${startDate}&endDate=${endDate}`;
+      }
       // Kiểm tra auth.gate và xây dựng phần query string tương ứng
       if (auth.gate) {
         url += `&gateId=${auth.gate.id}`;
@@ -34,7 +45,7 @@ export const HistoryTable = ({ totalCount, setTotalCount }) => {
   };
   useEffect(() => {
     getHistories(1);
-  }, []);
+  }, [keyword, startDate, endDate]);
   const columns = [
     {
       title: "ID",

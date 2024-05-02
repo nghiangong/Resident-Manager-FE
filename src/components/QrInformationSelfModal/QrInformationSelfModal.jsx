@@ -41,7 +41,11 @@ export const QrInformationSelfModal = ({ isOpen, setIsOpen }) => {
       if (!isExpired(expireDate)) {
         const res = await userRequest.post("/user/createQr", {
           userId: auth.id,
-          name: auth.name.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+          name: auth.name
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D"),
           expireDate: expireDate,
           gender: auth.gender,
           resident: true,

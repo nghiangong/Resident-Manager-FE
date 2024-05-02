@@ -35,14 +35,24 @@ export const QrInformationVisitorModal = ({ isOpen, setIsOpen }) => {
       if (!isExpired(expireDate)) {
         const res = await userRequest.post("/user/createQr", {
           userId: auth.id,
-          name: values.name.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+          name: values.name
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D"),
           expireDate: expireDate,
           gender: values.gender,
           resident: false,
-          note: values.note.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+          note: values.note
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D"),
           licensePlate: values.licensePlate
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, ""),
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D"),
         });
         navigate("/create-qr", { state: res.data });
       } else {

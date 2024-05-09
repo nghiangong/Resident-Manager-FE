@@ -3,7 +3,7 @@ import logo from "../../image/logo-Vinhomes.png";
 import { Topbar } from "../../components/topbar/Topbar";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, message, notification } from "antd";
 import { userRequest } from "../../utils/requestMethod";
 import {
   formatDateTimeDetail,
@@ -34,6 +34,13 @@ export const CheckQr = () => {
         date: getCurrentDateTimeFormatted(),
       });
       message.success("Thêm vào lịch sử thành công");
+      // await userRequest.post(`/clients/${registrationToken}`, {
+      //   receiverId: dataObject.userId,
+      //   title: "Thông báo",
+      //   message: dataObject.resident
+      //     ? "Bạn vừa vào cổng"
+      //     : "Khách của bạn đã đến",
+      // });
       form.resetFields();
       setDataObject(null);
       if (textAreaInput.current) {

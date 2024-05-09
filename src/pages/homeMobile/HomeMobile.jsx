@@ -18,15 +18,36 @@ import { userRequest } from "../../utils/requestMethod";
 import { AddMemberModal } from "../../components/addMemberModal/AddMemberModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret, faUserTie } from "@fortawesome/free-solid-svg-icons";
-
+// import toast, { Toaster } from "react-hot-toast";
+// import { onMessageListener, requestForToken } from "../../utils/firebase";
 export const HomeMobile = () => {
   const [update, setUpdate] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [isModalOpen3, setIsModalOpen3] = useState(false);
+  // const [notification, setNotification] = useState({ title: "", body: "" });
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
   const auth = useAuthUser();
+  // const notify = () => toast(<ToastDisplay />);
+  // function ToastDisplay() {
+  //   return (
+  //     <div>
+  //       <p>
+  //         <b>{notification?.title}</b>
+  //       </p>
+  //       <p>{notification?.body}</p>
+  //     </div>
+  //   );
+  // }
+  // useEffect(() => {
+  //   if (notification?.title) {
+  //     notify();
+  //     setUpdate(!update);
+  //   }
+  // }, [notification]);
+
+  // requestForToken();
   const openModal1 = () => {
     if (user.createQrPermission) {
       setIsModalOpen1(true);
@@ -37,6 +58,17 @@ export const HomeMobile = () => {
       setIsModalOpen3(true);
     }
   };
+  // onMessageListener()
+  //   .then((payload) => {
+  //     const notification = JSON.parse(payload.data.notification);
+  //     if (notification.receiverId === auth.id) {
+  //       setNotification({
+  //         title: notification.title,
+  //         body: notification.message,
+  //       });
+  //     }
+  //   })
+  //   .catch((err) => console.log("failed: ", err));
   const getMyself = async () => {
     try {
       const res = await userRequest.get(`/users/${auth.id}`);
@@ -177,6 +209,7 @@ export const HomeMobile = () => {
         </div>
       </div>
       <NavMobile />
+      {/* <Toaster /> */}
     </div>
   );
 };

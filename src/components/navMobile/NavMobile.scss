@@ -5,7 +5,8 @@
   flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
-  margin-block-start: calc(100vh - 41.06px);
+  // margin-block-start: calc(100vh - 41.06px);
+  bottom: 0;
   background-color: var(--color-light);
   .subNav {
     text-decoration: none;

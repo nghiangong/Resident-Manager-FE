@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const BASE_URL1 = "http://192.168.1.98:8080/api/v1";
+const BASE_URL1 = "http://localhost:8080/api/v1";
 // const BASE_URL2 = "http://localhost:8080/api/auth";
 // export const registrationToken =
 //   "fn6u9reTmuHeWaR81HmfPZ%3AAPA91bG8SbSF_ESzM2weSzvf3WkzZZenf4_EtbgkLXORk45e0sDZKhWJMeQPsAHSfNDuvuMb1mQ2DuYAAWCrIsIE-8XMBkUmrgN4dA1yLeWd_78qA18e6X43TCQLpqxHlRJqaOC2_YV9";

@@ -44,6 +44,24 @@ function generateGate(k) {
   return gateData;
 }
 
+const note = [
+  "Den tham nha",
+  "Shipper giao hang",
+  "Ho hang den choi",
+  "Di choi cong vien",
+  "Mua sam tai trung tam thuong mai",
+  "Tham gia workshop",
+  "Nghi ngoi, thu gian",
+  "Den xem nha",
+  "Di mua nha",
+  "Di bo, tap the duc",
+  "Lam mot so loai giay to",
+  "Cung hop du an",
+  "Hoc them ngoai khoa",
+  "Tham quan chup anh",
+  "Di xem phim tai rap",
+];
+
 function generateFullName() {
   const firstNameList = [
     "Nguyễn",
@@ -288,6 +306,81 @@ const addAdmin = async () => {
     acceptedStatus: true,
   });
 };
+
+const addHistory = async () => {
+  // Lặp qua từng ngày trong 2 tháng trở về trước đến ngày hiện tại
+  const currentDate = new Date();
+  const twoMonthsAgo = new Date();
+  twoMonthsAgo.setMonth(currentDate.getMonth() - 2);
+
+  while (twoMonthsAgo <= currentDate) {
+    // Tạo random số request từ 10 đến 20
+    const numberOfRequests = Math.floor(Math.random() * 11) + 10;
+
+    // Tạo request với resident là false
+    for (let i = 0; i < numberOfRequests; i++) {
+      const randomGateId = Math.floor(Math.random() * 10) + 1;
+      const randomQrCreaterId = Math.floor(Math.random() * 400) + 1;
+      const randomNote = getRandomItem(note);
+      const randomDate = new Date(
+        twoMonthsAgo.getFullYear(),
+        twoMonthsAgo.getMonth(),
+        twoMonthsAgo.getDate(),
+        Math.floor(Math.random() * 24),
+        Math.floor(Math.random() * 60)
+      );
+      const resident = false;
+
+      await axios.post("http://localhost:8080/api/v1/history", {
+        name: generateFullName()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D"),
+        gender: Math.random() < 0.5, // Random giới tính
+        date: randomDate.toISOString(), // Format ngày theo chuẩn ISO
+        gateId: randomGateId,
+        qrCreatorId: randomQrCreaterId,
+        note: randomNote,
+        resident: resident,
+      });
+    }
+    const numberOfRequests1 = Math.floor(Math.random() * 11) + 10;
+    // Tạo request với resident là true
+    for (let i = 0; i < numberOfRequests1; i++) {
+      const randomQrCreaterId = Math.floor(Math.random() * 400) + 1;
+      const randomDate = new Date(
+        twoMonthsAgo.getFullYear(),
+        twoMonthsAgo.getMonth(),
+        twoMonthsAgo.getDate(),
+        Math.floor(Math.random() * 24),
+        Math.floor(Math.random() * 60)
+      );
+      const resident = true;
+
+      const res = await axios.get(
+        `http://localhost:8080/api/v1/users/${randomQrCreaterId}`
+      );
+      const { name, gender } = res.data;
+
+      await axios.post("http://localhost:8080/api/v1/history", {
+        name: name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D"),
+        gender: gender,
+        date: randomDate.toISOString(),
+        gateId: Math.floor(Math.random() * 10) + 1,
+        qrCreatorId: randomQrCreaterId,
+        resident: resident,
+      });
+    }
+
+    // Tăng ngày lên 1 để lặp tiếp
+    twoMonthsAgo.setDate(twoMonthsAgo.getDate() + 1);
+  }
+};
 //muốn dùng file này, phía backend phải create drop và comment lại các đoạn sau
 //các hasRole phương thức post ở file Controller, acceptedStatus ở mapstrucmapper
 
@@ -299,6 +392,7 @@ const addData = async () => {
     await addResident();
     await addGateKeepers();
     await addAdmin();
+    await addHistory();
     console.log("Data added successfully.");
   } catch (error) {
     console.error("Error adding data:", error);

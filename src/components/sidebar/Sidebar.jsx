@@ -1,11 +1,3 @@
-import {
-  BarChartOutlined,
-  CheckCircleOutlined,
-  HistoryOutlined,
-  HomeOutlined,
-  UsergroupAddOutlined,
-  UsergroupDeleteOutlined,
-} from "@ant-design/icons";
 import "./Sidebar.scss";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,7 +61,7 @@ export const Sidebar = () => {
               }`}
             >
               <FontAwesomeIcon icon={faClock} />
-              <span>Xem lịch sử vào ra</span>
+              <span>Lịch sử vào ra</span>
             </Link>
           </>
         )}
@@ -91,7 +83,7 @@ export const Sidebar = () => {
               }`}
             >
               <FontAwesomeIcon icon={faClock} />
-              <span>Xem lịch sử vào ra</span>
+              <span>Lịch sử vào ra</span>
             </Link>
           </>
         )}

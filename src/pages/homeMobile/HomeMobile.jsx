@@ -78,10 +78,9 @@ export const HomeMobile = () => {
     }
   };
   const getMembers = async () => {
-    let id;
-    auth.ownId === 0 ? (id = auth.id) : (id = auth.ownId);
+    let id = auth.house.id;
     try {
-      const res = await userRequest.get(`/users/${id}/family`);
+      const res = await userRequest.get(`/users/family/${id}`);
       setUsers(res.data);
     } catch (error) {
       message.error("Không lấy được thông tin thành viên");

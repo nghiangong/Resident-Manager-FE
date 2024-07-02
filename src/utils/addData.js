@@ -155,13 +155,19 @@ function generateUsername(name) {
   const nameParts = name.split(" ");
   let firstAndMiddleName = "";
   for (let i = 0; i < nameParts.length - 1; i++) {
-    firstAndMiddleName += nameParts[i].charAt(0).toLowerCase();
+    firstAndMiddleName += nameParts[i]
+      .charAt(0)
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D")
+      .toLowerCase();
   }
 
   // Tạo phần cuối của username từ tên cuối cùng
   const lastName = nameParts[nameParts.length - 1]
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
     .toLowerCase();
 
   // Tạo phần số ngẫu nhiên từ 1 đến 10000
